@@ -1,4 +1,4 @@
-# Code for "Combining Reconstruction and Contrastive Methods for Multimodal Representations in RL" (submitted at RLC 24)
+# Code for the 2024 Reinforcement Learning Conference (RLC) Paper "Combining Reconstruction and Contrastive Methods for Multimodal Representations in RL"
 
 ## Setup
 Tested with Python 3.10 
@@ -45,5 +45,3 @@ For example, to run train the model-free agents for standard images with Joint(C
 ```python experiments/run_rl.py experiments/configs/model_free/standard_joint.yml -e mf_standard_joint_cv```
 
 The respective ```defaults``` folders contain the default configs for the individual methods   
-
-# CoRAL
