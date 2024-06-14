@@ -1,0 +1,32 @@
+---
+name: DEFAULT
+import_path: "img_only_cv.yml"
+repetitions: 1
+iterations: 1
+params:
+  experiment:
+    model_objective: "ssl"
+  model:
+    encoder1:
+      conv_depth_factor: 32
+      conv_activation: ReLU
+      dense_activation: ELU
+      add_dense_layer: False
+      num_layers: 3
+      layer_size: 300
+  trainer:
+    objective:
+      obs1:
+        scale_factor: 1.0
+        projection_dim: 50
+        activation: "ELU"
+        type: "info_nce"
+        state_layer_size: 256
+        state_num_layers: 2
+        obs_layer_size: 0
+        obs_num_layers: 0
+        use_prior_features: False
+        info_nce:
+          init_inverse_temp: 1.0
+          inverse_temp_lr: 0.002
+          seq_only_negative: False

@@ -1,0 +1,30 @@
+---
+# Experiment 1
+name: "loco_example"
+# See "common_defaults/mfrl" for the configs of the other representation learning methods
+import_path: "common_defaults/mfrl/p_coral.yml"
+path: "loco_example"   # location to save results in
+repetitions: 1 # number of times one set of parameters is run
+iterations: 1001 # number of iterations (collection episodes in this case)
+reps_per_job: 1
+reps_in_parallel: 1
+params:
+  experiment:
+    obs_type: "img_pro"   # remove "_pro" for image only
+  env:
+    distractor_type: "none"
+    distractor_location: "foreground"
+    # pick the environment you want to run from
+    # "hurdle_cheetah-run", "hurdle_walker-walk", "hurdle_walker-run",
+    # "ant_empty", "ant_walls", "quadruped_escape",
+
+    env: "hurdle_cheetah-run"
+    action_repeat: 2
+  rl:
+    rl_exp:
+      model_updt_steps: 250
+
+# example config for wandb, if you want to use it
+# wandb:
+#   project: "model_free_example"
+#   group: "hurdle_cheetah-run"

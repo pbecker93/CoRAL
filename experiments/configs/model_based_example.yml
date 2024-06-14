@@ -1,0 +1,32 @@
+---
+# Experiment 1
+name: "mb_example"
+
+import_path: "common_defaults/mbrl/p_coral.yml"
+# Required: Can also be set in DEFAULT
+path: "mb_example"   # location to save results in
+repetitions: 1 # number of times one set of parameters is run
+iterations: 1001 # number of iterations per repetition
+reps_per_job: 1
+reps_in_parallel: 1
+params:
+  experiment:
+    obs_type: "img_pro"   # remove "_pro" for image only
+  env:
+    #-------------
+    # For Standard Images:
+    distractor_type: "none"
+    distractor_location: "foreground"
+    # For Natural Background Images (make sure you download the dataset and set the path first (see README.md)
+    # distractor_type: "kinetics"
+    # distractor_location: "background"
+    # For Occluded Images (make sure you download the dataset and set the path first (see README.md):
+    # distractor_type: "disks_medium"
+    # distractor_location: "foreground"
+    # -------------
+    env: "cartpole-swingup"
+
+# example config for wandb, if you want to use it
+# wandb:
+#   project: "model_based_example"
+#   group: "cartpole-swingup"

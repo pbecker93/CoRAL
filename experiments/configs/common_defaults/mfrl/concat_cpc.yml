@@ -1,0 +1,10 @@
+---
+name: DEFAULT
+import_path: "img_only_cpc.yml"
+repetitions: 1
+iterations: 1
+params:
+  rl:
+    rl_exp:
+      bypass_mask: [ False, True ]
+      normalize_obs: False

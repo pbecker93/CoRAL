@@ -1,0 +1,223 @@
+---
+# Experiment 1
+name: "v_coral_door"
+import_path: "common_defaults/mfrl/v_coral.yml"
+# Required: Can also be set in DEFAULT
+path: "v_coral_door"   # location to save results in
+repetitions: 1 # number of times one set of parameters is run
+iterations: 10001 # number of iterations per repetition
+reps_per_job: 1
+reps_in_parallel: 1
+params:
+  env:
+    env: "maniskill-replica_door"
+    env_kwargs: { "fixed_seed": False,
+                  "control_mode": "joint",
+                  "crop_image_to_square": True,
+                  "no_rot": True,
+                  env_kwargs: { fixed_target_link_idx: 0,
+                                # First 25 doors
+                                model_ids: [ '1000', '1001', '1002', '1006', '1007',
+                                             '1014', '1017', '1018', '1025', '1026',
+                                             '1027', '1028', '1030', '1031', '1034',
+                                             '1036', '1038', '1039', '1041', '1042',
+                                             '1044', '1045', '1046', '1047', '1049',
+                                ],
+                  }
+    }
+    action_repeat: 1
+    img_size: 76
+  experiment:
+    seed: 0
+    obs_type: "rgbd_pro"
+  rl:
+    initial_data_collection:
+      num_sequences: 20 # 20 for real
+    data_collection:
+      num_sequences: 1
+    rl_exp:
+      replay_buffer_size: -1
+      model_updt_steps: 50
+      normalize_obs: True
+  model:
+    encoder1:
+      num_layers: 4
+      layer_size: 512
+    transition:
+      layer_size: 512
+      rec_state_dim: 400
+      lsd: 128
+  policy:
+    actor:
+      min_std: 0.005
+      init_std: 1.0
+      activation: ELU_ln
+    critic:
+      activation: ELU_ln
+  trainer:
+    actor_learning_rate: 0.0003
+    critic_learning_rate: 0.0003
+    discount: 0.85
+    entropy:
+      learning_rate: 0.0003
+      bonus: 1.0
+      learn_bonus: True
+      exp_activation: False
+      target: auto
+    objective:
+      obs1:
+        layer_size: 512
+        num_layers: 4
+        scale_factor: 25
+      kl:
+        free_nats: 3
+  policy_eval:
+    reward_eval:
+      eval_interval: 20
+      record_vid: True
+
+---
+# Experiment 1
+name: "v_coral_drawer"
+import_path: "common_defaults/mfrl/v_coral.yml"
+# Required: Can also be set in DEFAULT
+path: "v_coral_drawer"   # location to save results in
+repetitions: 1 # number of times one set of parameters is run
+iterations: 10001 # number of iterations per repetition
+reps_per_job: 1
+reps_in_parallel: 1
+params:
+  env:
+    env: "maniskill-replica_drawer"
+    env_kwargs: { "fixed_seed": False,
+                  "control_mode": "joint",
+                  "crop_image_to_square": True,
+                  "no_rot": True
+                  }
+
+    action_repeat: 1
+    img_size: 76
+  experiment:
+    seed: 0
+  rl:
+    initial_data_collection:
+      num_sequences: 20
+    data_collection:
+      num_sequences: 1
+    rl_exp:
+      replay_buffer_size: -1
+      model_updt_steps: 50
+      normalize_obs: True
+  model:
+    encoder1:
+      num_layers: 4
+      layer_size: 512
+    transition:
+      layer_size: 512
+      rec_state_dim: 400
+      lsd: 128
+  policy:
+    actor:
+      min_std: 0.005
+      init_std: 1.0
+      activation: ELU_ln
+    critic:
+      activation: ELU_ln
+  trainer:
+    actor_learning_rate: 0.0003
+    critic_learning_rate: 0.0003
+    discount: 0.85
+    entropy:
+      learning_rate: 0.0003
+      bonus: 1.0
+      learn_bonus: True
+      exp_activation: False
+      target: auto
+    objective:
+      obs1:
+        layer_size: 512
+        num_layers: 4
+        scale_factor: 25
+      kl:
+        free_nats: 3
+  policy_eval:
+    reward_eval:
+      eval_interval: 20
+      record_vid: True
+list:
+  experiment:
+    # image + proprioception, depth + proprioception
+    obs_type: ["img_pro", "depth_pro"]
+
+
+
+---
+# Experiment 1
+name: "v_coral_static_manipulation"
+import_path: "common_defaults/mfrl/v_coral.yml"
+# Required: Can also be set in DEFAULT
+path: "v_coral_static_manipulation"   # location to save results in
+repetitions: 1 # number of times one set of parameters is run
+iterations: 10001 # number of iterations per repetition
+reps_per_job: 1
+reps_in_parallel: 1
+params:
+  env:
+    env_kwargs: { "fixed_seed": False,
+                  "control_mode": "joint",
+                  }
+
+    action_repeat: 1
+    img_size: 76
+  experiment:
+    obs_type: "img_pro"
+    seed: 0
+  rl:
+    initial_data_collection:
+      num_sequences: 20
+    data_collection:
+      num_sequences: 1
+    rl_exp:
+      replay_buffer_size: -1
+      model_updt_steps: 50
+      normalize_obs: True
+  model:
+    encoder1:
+      num_layers: 4
+      layer_size: 512
+    transition:
+      layer_size: 512
+      rec_state_dim: 400
+      lsd: 128
+  policy:
+    actor:
+      min_std: 0.005
+      init_std: 1.0
+      activation: ELU_ln
+    critic:
+      activation: ELU_ln
+  trainer:
+    actor_learning_rate: 0.0003
+    critic_learning_rate: 0.0003
+    discount: 0.85
+    entropy:
+      learning_rate: 0.0003
+      bonus: 1.0
+      learn_bonus: True
+      exp_activation: False
+      target: auto
+    objective:
+      obs1:
+        layer_size: 512
+        num_layers: 4
+        scale_factor: 25
+      kl:
+        free_nats: 3
+  policy_eval:
+    reward_eval:
+      eval_interval: 20
+      record_vid: True
+list:
+  env:
+    env: [ "maniskill-replica_faucet", "maniskill-replica_lift", "maniskill-replica_push" ]
+

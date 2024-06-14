@@ -1,0 +1,100 @@
+---
+name: "DEFAULT"
+repetitions: 1
+iterations: 1
+params:
+  experiment:
+    world_model: "rssm"
+    agent: "sac"
+    seed: 0
+    fully_deterministic: False
+    save_interval: -1 # -1 means never
+  env:
+    action_repeat: -1
+  policy:
+    use_det_features: True
+    project_for_bypass: True
+    actor:
+      num_layers: 3
+      layer_size: 1024
+      activation: ELU
+      min_std: 0.005
+      init_std: 0.01831563888873418
+      mean_scale: 5.0
+      apply_mean_scale: True
+    critic:
+      num_layers: 3
+      layer_size: 1024
+      activation: ELU
+  trainer:
+    actor_learning_rate: 0.001
+    actor_clip_norm: 10
+    actor_weight_decay: 0.0
+    critic_learning_rate: 0.001
+    critic_clip_norm: 100.0
+    discount: 0.99
+    entropy:
+      learning_rate: 0.001
+      clip_norm: 1.0
+      learn_bonus: True
+      bonus: 0.1
+    target_critic_decay: 0.995
+    target_critic_interval: 1
+    critic_grad_to_model: False
+    model_learning_rate: 0.0003
+    model_weight_decay: 0.0
+    model_clip_norm: 10
+    objective:
+      reward_scale_factor: 1
+      kl:
+        scale_factor: 1.0
+        free_nats: 1.0
+        balanced: True
+        alpha: 0.8
+      inv_dyn:
+        activation: "ELU"
+        scale_factor: 1.0
+        layer_size: 128
+        num_layers: 2
+  rl:
+    initial_data_collection:
+      seq_length: -1
+      num_sequences: 5
+    data_collection:
+      seq_length: -1
+      num_sequences: 1
+      action_noise_std: 0.0
+    rl_exp:
+      model_updt_seq_length: 32
+      model_updt_batch_size: 32
+      normalize_obs: True
+      replay_buffer_size: -1
+  model:
+    encoder0:
+      conv_depth_factor: 32
+      conv_activation: "ReLU"
+      dense_activation: "ELU"
+      add_dense_layer: False
+      num_layers: 3
+      layer_size: 300
+    transition:
+      type: "r_rssm"
+      lsd: 64
+      rec_state_dim: 200
+      num_layers: 2
+      layer_size: 400
+      min_std: 0.1
+      activation: "ELU"
+      num_categoricals: 32
+      categorical_size: 32
+    reward_decoder:
+      num_layers: 2
+      layer_size: 128
+      activation: "ELU"
+  policy_eval:
+    reward_eval:
+      eval_interval: 20
+      num_sequences: 20
+      use_mean: True
+      record_vid: False
+      max_sequence_length: -1

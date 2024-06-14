@@ -1,0 +1,30 @@
+---
+name: DEFAULT
+import_path: "mf_default.yml"
+repetitions: 1
+iterations: 1
+params:
+  experiment:
+    model_objective: "ssl"
+  env:
+    img_size: 76
+  rl:
+    img_preprocessing:
+      type: "crop"
+  trainer:
+    objective:
+      with_inv_dyn_loss: False
+      obs0:
+        scale_factor: 1.0
+        projection_dim: 50
+        activation: "ELU"
+        type: "info_nce"
+        state_layer_size: 256
+        state_num_layers: 2
+        obs_layer_size: 0
+        obs_num_layers: 0
+        use_prior_features: False
+        info_nce:
+          init_inverse_temp: 1.0
+          inverse_temp_lr: 0.002
+          seq_only_negative: False

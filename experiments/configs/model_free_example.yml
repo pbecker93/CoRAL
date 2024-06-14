@@ -1,0 +1,37 @@
+---
+# Experiment 1
+name: "mf_example"
+# This is configured to run a model free agent with V-CORAL representation
+# You can use "
+# See "model_free/mbrl for the configs of the other representation learning methods
+import_path: "common_defaults/mfrl/v_coral.yml"
+path: "mf_example"   # location to save results in
+repetitions: 1 # number of times one set of parameters is run
+iterations: 1001 # number of iterations (collection episodes in this case)
+reps_per_job: 1
+reps_in_parallel: 1
+params:
+  experiment:
+    obs_type: "img_pro"   # remove "_pro" for image only
+  env:
+    #-------------
+    # For Standard Images:
+    distractor_type: "none"
+    distractor_location: "foreground"
+    # For Natural Background Images (make sure you download the dataset and set the path first (see README.md)
+    # distractor_type: "kinetics"
+    # distractor_location: "background"
+    # For Occluded Images (make sure you download the dataset and set the path first (see README.md):
+    # distractor_type: "disks_medium"
+    # distractor_location: "foreground"
+    # -------------
+    env: "cartpole-swingup"
+    action_repeat: 8
+  rl:
+    rl_exp:
+      model_updt_steps: 63
+
+# example config for wandb, if you want to use it
+# wandb:
+#   project: "model_free_example"
+#   group: "cartpole-swingup"
