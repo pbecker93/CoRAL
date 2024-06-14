@@ -1,4 +1,4 @@
-# "Combining Reconstruction and Contrastive Methods for Multimodal Representations in RL"
+# Combining Reconstruction and Contrastive Methods for Multimodal Representations in RL
 **Philipp Becker, Sebastian Mossburger, Fabian Otto, Gerhard Neumann** 
 
 *Published at Reinforcement Learning Conference (RLC) 2024*
