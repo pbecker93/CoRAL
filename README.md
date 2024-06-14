@@ -1,4 +1,7 @@
-# Code for the 2024 Reinforcement Learning Conference (RLC) Paper "Combining Reconstruction and Contrastive Methods for Multimodal Representations in RL"
+# "Combining Reconstruction and Contrastive Methods for Multimodal Representations in RL"
+**Philipp Becker, Sebastian Mossburger, Fabian Otto, Gerhard Neumann** 
+
+*Published at Reinforcement Learning Conference (RLC) 2024*
 
 ## Setup
 Tested with Python 3.10 
